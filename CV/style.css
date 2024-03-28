@@ -1,0 +1,95 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+.page{
+    width: 210mm;
+    min-height: 297mm;
+    margin: 1cm auto;
+    border: 1px solid #D3D3D3;
+    border-radius: 5px;
+    background: white;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+}
+
+.main{
+    width: 100%;
+}
+
+.main-content{
+    display: flex;
+    flex-direction: column;
+    padding: 1cm;
+}
+
+.main-content p {
+    text-align: justify;
+    line-height: 1.5;
+}
+
+
+.sidebar{
+    background-color: lightgray;
+    border-radius: 5px 0 0 5px;
+    padding: 1cm 0.4cm 1cm 0.4cm;
+    width: 25%;
+}
+
+.sidebar-content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.sidebar-content > img {
+    width: 130px;
+    height: auto;
+    margin: 0 auto;
+}
+
+.sidebar-content{
+    text-align: center;
+}
+
+.sidebar-content > a {
+    margin-bottom: 10px;
+}
+
+.sidebar-name{
+    margin-top: 0;
+}
+.poste{
+    margin-top: 20px;
+    padding-bottom: 10px;
+    font-size: 20px;
+    border-bottom: 2px solid black;
+}
+
+.sidebar-content > h2, h3 {
+    margin-top: 20px;
+    padding-bottom: 10px;
+    font-size: 18px;
+    border-bottom: 2px solid black;
+}
+
+.title{
+    font-size: 32px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid black;
+}
+
+.date{
+    font-size: 18px;
+}
+.grid-skills{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.grid-skills > img {
+    margin-right: 25px;
+    max-width: 100px;
+}
