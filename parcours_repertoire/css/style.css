@@ -1,0 +1,19 @@
+.container{
+    width: 1280px;
+    height: 700px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.liste{
+    list-style: none;
+    font-weight: bold;
+}
+.file{
+    color: yellowgreen;
+}
+.folder{
+    color: brown;
+}
+
