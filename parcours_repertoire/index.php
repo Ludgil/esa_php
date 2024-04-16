@@ -11,16 +11,15 @@
         <ul class="liste">
         <?php 
             $pointeur = opendir($_SERVER["DOCUMENT_ROOT"]) or die('Erreur de listage : le répertoire n existe pas');
-            while($element = readdir($pointeur)){
-                if ($element != '.' && $element != '..'){
-                    if(is_file($element)){
+            while($element = readdir($pointeur)):
+                if ($element != '.' && $element != '..'):
+                    if(is_file($element)):
                         echo '<li class="file">File : ' . $element .'</li>';
-                    }
-                    else{
+                    else:
                         echo '<li class="folder">Folder : ' . $element .'</li>';
-                    }
-                }
-            }
+                    endif;
+                endif;
+            endwhile;
             closedir($pointeur);
         ?>
         </ul>
