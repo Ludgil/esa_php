@@ -1,0 +1,27 @@
+.container{
+    width: 1280px;
+    height: 700px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.phrase{
+    padding: 10px;
+    border-radius: 5px;
+    background-color: gray;
+    margin-bottom: 15px;
+}
+.noir{
+    color:black;
+}
+
+.jaune{
+    color:yellow;
+}
+.rouge{
+    color:red;
+}
+
