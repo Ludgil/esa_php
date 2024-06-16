@@ -1,0 +1,98 @@
+.title{
+    margin: 25px auto 50px auto;
+}
+
+.task-todo{
+    border-right: solid 1px #606c76;
+    width: 50%;
+}
+
+.task-ended{
+    width: 50%;
+}
+
+.ended{
+    text-decoration: line-through;
+}
+
+ul{
+    width: 100%;
+}
+
+li{
+    list-style-type: none;
+    text-align: center;
+}
+
+.small{
+    font-size: .8rem;
+    height: 2.8rem;
+    line-height: 2.8rem;
+    padding: 0 1.5rem;
+}
+.delete-button{
+    background-color: red;
+    border-color: red;
+    
+}
+
+.validate-button{
+    background-color: green;
+    border-color: green;
+}
+
+.task-content{
+    margin-bottom: 15px;
+}
+.categ{
+    width: 25%;
+    border-bottom: 1px solid #606c76;
+    margin: 0 auto 25px auto;
+}
+
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.theme-select{
+    display: flex;
+    align-items: center;
+    position: absolute;
+    left: 0;
+}
+.filter-select{
+    display: flex;
+    align-items: center;
+    position: absolute;
+    right: 0;
+}
+#filter{
+    margin-right: 10px;
+}
+#theme{
+    margin-right: 10px;
+}
+
+.dark{
+    background-color: #2B3334;
+    color: aliceblue;
+}
+
+body.dark input[type='text'],
+body.dark input[type='date'],
+body.dark select {
+    color: aliceblue;
+}
+body.dark option {
+    color: #2B3334;;
+}
+
+.green{
+    color: green;
+}
+.red{
+    color:red;
+}
