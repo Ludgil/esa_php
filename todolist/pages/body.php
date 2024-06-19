@@ -27,7 +27,7 @@
                             <option value="other" <?= $filter == 'other' ? 'selected' : '' ?>>Other</option>
                             <?php if(count($categories) > 0):?>
                             <?php foreach ($categories as $category): ?>
-                                <option value='<?=$category?>' <?= $category == $category ? 'selected' : '' ?>><?= $category?></option>
+                                <option value='<?=$category?>' <?= $filter == $category ? 'selected' : '' ?>><?= $category?></option>
                             <?php endforeach; ?>
                             <?php endif; ?>
                         </select>

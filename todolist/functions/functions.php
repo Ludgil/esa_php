@@ -54,7 +54,7 @@ function saveCategories($categories) {
         // écrit la première ligne ( libéllé )
         fputcsv($file, ['category']);
         foreach ($categories as $category) {
-            fputcsv($file, $category);
+            fputcsv($file, [$category]);
         }
         fclose($file);
     }

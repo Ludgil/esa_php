@@ -32,5 +32,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['index'])) {
                 </div>
             </div>
             <button type="submit">Update</button>
+            <a href="index.php" class="button">Back</a>
         </form>
     </div>
