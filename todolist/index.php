@@ -6,6 +6,8 @@ if (isset($_GET['page']) && $_GET['page'] == 'edit' && isset($_POST['index'])) {
     include_once 'pages/edit.php';
 }elseif(isset($_GET['page']) && $_GET['page'] == 'add_category'){
     include_once 'pages/add_category.php';
+}elseif(isset($_GET['page']) && $_GET['page'] == 'history'){
+    include_once 'pages/history.php';
 }else {
     $todos = getTodos();
     $categories = getCategories();

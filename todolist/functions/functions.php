@@ -1,7 +1,12 @@
 <?php
 include_once '../config.php';
-function getTodos() {
-    $filename = CSV_PATH;
+function getTodos($option = 'todos') {
+    if($option == 'history'){
+        $filename = CSV_PATH_HISTORY;
+    }else{
+
+        $filename = CSV_PATH;
+    }
     $todos = [];
 
     if (file_exists($filename)) {
@@ -35,8 +40,14 @@ function getCategories() {
     return $categories;
 }
 
-function saveTodos($todos) {
-    $filename = CSV_PATH;
+function saveTodos($todos, $option = 'save') {
+    if($option == 'save'){
+        $filename = CSV_PATH;
+    }elseif($option == 'delete'){
+        $filename = CSV_PATH_HISTORY;
+    }else{
+        $filename = CSV_PATH;
+    }
     if (file_exists($filename)) {
         $file = fopen($filename, 'w');
         // écrit la première ligne ( libéllé )

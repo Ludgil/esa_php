@@ -14,7 +14,6 @@
             </div>
         </div>
         <div class="row menu">
-          
             <div class="filter-select">
                 <form name="filterform" id="filterform" method="post" action="index.php" class="row">
                         <label for="filter">Filter by category :</label>
@@ -34,8 +33,40 @@
                         <button type="submit" class="small">Ok</button>
                 </form>
                 <a href="index.php?page=add_category" class="button small">Add new category</a>
+                <a href="index.php?page=history" class="button small">History</a>
             </div>
         </div>
+        <form action="functions/add.php" method="post">
+            <div class="row">
+                <div class="column">
+                    <label for="task">Add Task</label>
+                    <input type="text" name="task" placeholder="Something to do" required>
+                </div>
+                <div class="column">
+                    <label for="due_date">Due Date</label>
+                    <input type="date" name="due_date" required>
+                </div>
+                <div class="column">
+                    <label for="category">Category</label>
+                    <select name="category" id="category" required>
+                        <option value="" disabled selected>-- Choose a category --</option>
+                        <option value="sport">Sport</option>
+                        <option value="work">Work</option>
+                        <option value="appointment">Appointment</option>
+                        <option value="tobuy">To Buy</option>
+                        <option value="other">Other</option>
+                        <?php if(count($categories) > 0):?>
+                        <?php foreach ($categories as $category): ?>
+                        <option value='<?=$category?>'><?= $category?></option>
+                        <?php endforeach; ?>
+                        <?php endif; ?>
+                    </select>
+                </div>
+                <div class="add-button-container">
+                    <button type="submit" class="add-button">Add</button>
+                </div>
+            </div>
+        </form>
         <div class="row clearfix">
             <div class="float-left task-todo">
                 <ul>
@@ -130,33 +161,4 @@
                 </ul>
             </div>
         </div>
-        <form action="functions/add.php" method="post">
-            <div class="row">
-                <div class="column">
-                    <label for="task">Add Task</label>
-                    <input type="text" name="task" placeholder="Something to do" required>
-                </div>
-                <div class="column">
-                    <label for="due_date">Due Date</label>
-                    <input type="date" name="due_date" required>
-                </div>
-                <div class="column">
-                    <label for="category">Category</label>
-                    <select name="category" id="category" required>
-                        <option value="" disabled selected>-- Choose a category --</option>
-                        <option value="sport">Sport</option>
-                        <option value="work">Work</option>
-                        <option value="appointment">Appointment</option>
-                        <option value="tobuy">To Buy</option>
-                        <option value="other">Other</option>
-                        <?php if(count($categories) > 0):?>
-                        <?php foreach ($categories as $category): ?>
-                        <option value='<?=$category?>'><?= $category?></option>
-                        <?php endforeach; ?>
-                        <?php endif; ?>
-                    </select>
-                </div>
-            </div>
-            <button type="submit">Add</button>
-        </form>
     </div>

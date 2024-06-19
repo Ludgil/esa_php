@@ -3,14 +3,9 @@ include 'functions.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $index = $_POST['index'];
-    echo CSV_PATH;
-    $todos = getTodos();
     $history = getTodos('history');
-    $todoDeleted = $todos[$index];
-    $history[] = $todoDeleted;
-    array_splice($todos, $index, 1);
+    array_splice($history, $index, 1);
     saveTodos($history, 'delete');
-    saveTodos($todos);
 }
 
 header('Location: ../index.php');

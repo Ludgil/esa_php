@@ -80,6 +80,14 @@ li{
     align-items: center;
     margin-bottom: 20px;
 }
+.add-button-container{
+    display: flex;
+    align-items: center;
+}
+.add-button{
+    margin-top: 15px;
+    margin-bottom: 0;
+}
 #filter{
     margin-right: 10px;
 }
