@@ -3,7 +3,6 @@ include 'functions.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $index = $_POST['index'];
-    echo CSV_PATH;
     $todos = getTodos();
     $history = getTodos('history');
     $todoDeleted = $todos[$index];
