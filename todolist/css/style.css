@@ -54,7 +54,6 @@ li{
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
 }
 
 .theme-select{
@@ -66,8 +65,20 @@ li{
 .filter-select{
     display: flex;
     align-items: center;
-    position: absolute;
-    right: 0;
+    justify-content: center;
+}
+#filterform{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 5px;
+    margin-bottom: 0;
+}
+.menu{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
 }
 #filter{
     margin-right: 10px;

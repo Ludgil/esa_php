@@ -12,6 +12,9 @@
             <div class="title-container">
                 <h1 class="title">To Do List</h1>
             </div>
+        </div>
+        <div class="row menu">
+          
             <div class="filter-select">
                 <form name="filterform" id="filterform" method="post" action="index.php" class="row">
                         <label for="filter">Filter by category :</label>
@@ -22,9 +25,15 @@
                             <option value="appointment" <?= $filter == 'appointment' ? 'selected' : '' ?>>Appointment</option>
                             <option value="tobuy" <?= $filter == 'tobuy' ? 'selected' : '' ?>>To Buy</option>
                             <option value="other" <?= $filter == 'other' ? 'selected' : '' ?>>Other</option>
+                            <?php if(count($categories) > 0):?>
+                            <?php foreach ($categories as $category): ?>
+                                <option value='<?=$category?>' <?= $category == $category ? 'selected' : '' ?>><?= $category?></option>
+                            <?php endforeach; ?>
+                            <?php endif; ?>
                         </select>
                         <button type="submit" class="small">Ok</button>
                 </form>
+                <a href="index.php?page=add_category" class="button small">Add new category</a>
             </div>
         </div>
         <div class="row clearfix">
@@ -140,6 +149,11 @@
                         <option value="appointment">Appointment</option>
                         <option value="tobuy">To Buy</option>
                         <option value="other">Other</option>
+                        <?php if(count($categories) > 0):?>
+                        <?php foreach ($categories as $category): ?>
+                        <option value='<?=$category?>'><?= $category?></option>
+                        <?php endforeach; ?>
+                        <?php endif; ?>
                     </select>
                 </div>
             </div>

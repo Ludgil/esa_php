@@ -4,8 +4,11 @@ include_once 'pages/layout/header.php';
 
 if (isset($_GET['page']) && $_GET['page'] == 'edit' && isset($_POST['index'])) {
     include_once 'pages/edit.php';
-} else {
+}elseif(isset($_GET['page']) && $_GET['page'] == 'add_category'){
+    include_once 'pages/add_category.php';
+}else {
     $todos = getTodos();
+    $categories = getCategories();
     if ($filter != "all"){
         $todos = array_filter($todos, function($todo) use ($filter) {
             return $todo["category"] === $filter;
