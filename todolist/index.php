@@ -2,7 +2,9 @@
 include_once 'config.php';
 include_once 'pages/layout/header.php';
 
-if (isset($_GET['page']) && $_GET['page'] == 'edit' && isset($_POST['index'])) {
+if (!isset($_SESSION['logged']) || $_SESSION['logged'] !== true) {
+    include_once 'pages/login.php';
+}elseif (isset($_GET['page']) && $_GET['page'] == 'edit' && isset($_POST['index'])) {
     include_once 'pages/edit.php';
 }elseif(isset($_GET['page']) && $_GET['page'] == 'add_category'){
     include_once 'pages/add_category.php';

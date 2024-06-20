@@ -14,7 +14,7 @@ function getTodos($option = 'todos') {
         // ignore la première ligne ( libéllé )
         fgetcsv($file);
         while (($data = fgetcsv($file)) !== FALSE) {
-            $todos[] = ['task' => $data[0], 'completed' => $data[1], 'due_date' => $data[2], 'category' => $data[3]];
+            $todos[] = ['task' => $data[0], 'completed' => $data[1], 'due_date' => $data[2], 'category' => $data[3], 'username' => $data[4]];
         }
 
         fclose($file);
@@ -51,7 +51,7 @@ function saveTodos($todos, $option = 'save') {
     if (file_exists($filename)) {
         $file = fopen($filename, 'w');
         // écrit la première ligne ( libéllé )
-        fputcsv($file, ['task', 'completed', 'due_date', 'category']);
+        fputcsv($file, ['task', 'completed', 'due_date', 'category', 'username']);
         foreach ($todos as $todo) {
             fputcsv($file, $todo);
         }
@@ -70,4 +70,33 @@ function saveCategories($categories) {
         fclose($file);
     }
 }
-?>
+
+function getUsers() {
+    $filename = CSV_PATH_USER;
+    $users = [];
+    if (file_exists($filename)) {
+        $file = fopen($filename, 'r');
+        fgetcsv($file);
+        while (($data = fgetcsv($file)) !== FALSE) {
+            $users[] = $data[0];
+        }
+        fclose($file);
+    }
+    return $users;
+}
+
+function saveUser($username) {
+    $filename = CSV_PATH_USER;
+    $usernames = getUsers();
+    $usernames[] = $username; 
+    if (file_exists($filename)) {
+        $file = fopen($filename, 'w');
+        // écrit la première ligne ( libéllé )
+        fputcsv($file, ['users']);
+        foreach ($usernames as $username) {
+            fputcsv($file, [$username]);
+        }
+        fclose($file);
+    }
+}
+

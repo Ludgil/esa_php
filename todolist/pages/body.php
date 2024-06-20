@@ -12,6 +12,7 @@
             <div class="title-container">
                 <h1 class="title">To Do List</h1>
             </div>
+            <a href="../functions/logout.php" class="button logout">Logout</a>
         </div>
         <div class="row menu">
             <div class="filter-select">
@@ -38,6 +39,7 @@
         </div>
         <form action="functions/add.php" method="post">
             <div class="row">
+                <input type="hidden" name='username'>
                 <div class="column">
                     <label for="task">Add Task</label>
                     <input type="text" name="task" placeholder="Something to do" required>
@@ -71,54 +73,56 @@
             <div class="float-left task-todo">
                 <ul>
                 <?php foreach ($todos as $index => $todo): ?>
-                    <?php if($todo['completed'] == False) : ?>
-                    <li>
-                        <div class="row">
-                            <div class="column">
-                                <p class="categ"><?= $todo['category'] ?></p>
-                            </div> 
-                        </div>
-                        <div class="row task-content">
+                    <?php if($todo['username'] == $_SESSION['username']):?>
+                        <?php if($todo['completed'] == False) : ?>
+                        <li>
                             <div class="row">
                                 <div class="column">
-                                    <p><?= htmlspecialchars($todo['task']) ?></p>
+                                    <p class="categ"><?= $todo['category'] ?></p>
+                                </div> 
+                            </div>
+                            <div class="row task-content">
+                                <div class="row">
+                                    <div class="column">
+                                        <p><?= htmlspecialchars($todo['task']) ?></p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="column">
+                                        <?php
+                                        // formater date pour pouvoir la comparer avec la date du jour
+                                        $due_date = strtotime($todo['due_date']);
+                                        // obtenir la date actuelle
+                                        $current_date = time();
+                                        // Comparer les dates
+                                        $date_class = $due_date <= $current_date ? 'red' : 'green';
+                                        ?>
+                                        <p class="<?= $date_class?>"><?= htmlspecialchars(date('d-m-Y', strtotime($todo['due_date']))) ?></p>
+                                    </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="column">
-                                    <?php
-                                    // formater date pour pouvoir la comparer avec la date du jour
-                                    $due_date = strtotime($todo['due_date']);
-                                    // obtenir la date actuelle
-                                    $current_date = time();
-                                    // Comparer les dates
-                                    $date_class = $due_date <= $current_date ? 'red' : 'green';
-                                    ?>
-                                    <p class="<?= $date_class?>"><?= htmlspecialchars(date('d-m-Y', strtotime($todo['due_date']))) ?></p>
+                                    <form action="index.php?page=edit" method="post">
+                                        <input type="hidden" name="index" value="<?= $index ?>">
+                                        <button type="submit" class="small">Edit</button>
+                                    </form>
+                                </div>
+                                <div class="column">
+                                    <form action="functions/toggle.php" method="post">
+                                        <input type="hidden" name="index" value="<?= $index ?>">
+                                        <button type="submit" class="validate-button small"><?= $todo['completed'] ? 'Restore Task' : 'End Task' ?></button>
+                                    </form>
+                                </div>
+                                <div class="column">
+                                    <form action="functions/delete.php" method="post" style="display:inline;">
+                                        <input type="hidden" name="index" value="<?= $index ?>">
+                                        <button type="submit" class="delete-button small">Delete</button>
+                                    </form>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="column">
-                                <form action="index.php?page=edit" method="post">
-                                    <input type="hidden" name="index" value="<?= $index ?>">
-                                    <button type="submit" class="small">Edit</button>
-                                </form>
-                            </div>
-                            <div class="column">
-                                <form action="functions/toggle.php" method="post">
-                                    <input type="hidden" name="index" value="<?= $index ?>">
-                                    <button type="submit" class="validate-button small"><?= $todo['completed'] ? 'Restore Task' : 'End Task' ?></button>
-                                </form>
-                            </div>
-                            <div class="column">
-                                <form action="functions/delete.php" method="post" style="display:inline;">
-                                    <input type="hidden" name="index" value="<?= $index ?>">
-                                    <button type="submit" class="delete-button small">Delete</button>
-                                </form>
-                            </div>
-                        </div>
-                    </li>
+                        </li>
+                        <?php endif;?>
                     <?php endif;?>
                 <?php endforeach; ?>
                 </ul>
@@ -126,36 +130,38 @@
             <div class="float-right task-ended">
                 <ul>
                 <?php foreach ($todos as $index => $todo): ?>
-                    <?php if($todo['completed'] == True):?>
-                    <li>
-                        <div class="row">
-                            <div class="column">
-                                <p class="categ"><?= $todo['category'] ?></p>
-                            </div> 
-                        </div>
-                        <div class="row task-content">
-                            <div class="column">
-                                <p class="ended"><?= htmlspecialchars($todo['task']) ?></p>
+                    <?php if($todo['username'] == $_SESSION['username']):?>
+                        <?php if($todo['completed'] == True):?>
+                        <li>
+                            <div class="row">
+                                <div class="column">
+                                    <p class="categ"><?= $todo['category'] ?></p>
+                                </div> 
                             </div>
-                            <div class="column">
-                                <p class="ended"><?= htmlspecialchars(date('d-m-Y', strtotime($todo['due_date'])))?></p>
+                            <div class="row task-content">
+                                <div class="column">
+                                    <p class="ended"><?= htmlspecialchars($todo['task']) ?></p>
+                                </div>
+                                <div class="column">
+                                    <p class="ended"><?= htmlspecialchars(date('d-m-Y', strtotime($todo['due_date'])))?></p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="column">
-                                <form action="functions/toggle.php" method="post">
-                                    <input type="hidden" name="index" value="<?= $index ?>">
-                                    <button type="submit" class="validate-button small"><?= $todo['completed'] ? 'Restore Task' : 'End Task' ?></button>
-                                </form>
+                            <div class="row">
+                                <div class="column">
+                                    <form action="functions/toggle.php" method="post">
+                                        <input type="hidden" name="index" value="<?= $index ?>">
+                                        <button type="submit" class="validate-button small"><?= $todo['completed'] ? 'Restore Task' : 'End Task' ?></button>
+                                    </form>
+                                </div>
+                                <div class="column">
+                                    <form action="functions/delete.php" method="post" style="display:inline;">
+                                        <input type="hidden" name="index" value="<?= $index ?>">
+                                        <button type="submit" class="delete-button small">Delete</button>
+                                    </form>
+                                </div>
                             </div>
-                            <div class="column">
-                                <form action="functions/delete.php" method="post" style="display:inline;">
-                                    <input type="hidden" name="index" value="<?= $index ?>">
-                                    <button type="submit" class="delete-button small">Delete</button>
-                                </form>
-                            </div>
-                        </div>
-                    </li>
+                        </li>
+                        <?php endif;?>
                     <?php endif;?>
                 <?php endforeach; ?>
                 </ul>

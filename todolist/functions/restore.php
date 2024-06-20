@@ -1,4 +1,5 @@
 <?php
+session_start();
 include_once 'functions.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -10,8 +11,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $due_date = $_POST['due_date'];
     $category = $_POST['category'];
     $completed = $_POST['completed'];
+    $username = $_SESSION['username'];
     $todos = getTodos();
-    $todos[] = ['task' => $task, 'completed' => $completed, 'due_date' => $due_date, 'category' => $category];
+    $todos[] = ['task' => $task, 'completed' => $completed, 'due_date' => $due_date, 'category' => $category, 'username' => $username];
     saveTodos($todos);
 }
 

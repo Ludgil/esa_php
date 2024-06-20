@@ -1,4 +1,5 @@
 <?php
+session_start();
 include_once 'functions/functions.php';
 $theme = 'light';
 if (isset($_POST['theme'])) {

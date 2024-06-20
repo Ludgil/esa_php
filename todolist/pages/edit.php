@@ -3,6 +3,7 @@
 if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['index'])) {
     $index = $_POST['index'];
     $todos = getTodos();
+    $categories = getCategories();
     $todo = $todos[$index];
 }
 ?>
@@ -28,6 +29,11 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['index'])) {
                         <option value="appointment" <?= $todo['category'] == 'appointment' ? 'selected' : '' ?>>Appointment</option>
                         <option value="tobuy" <?= $todo['category'] == 'tobuy' ? 'selected' : '' ?>>To Buy</option>
                         <option value="other" <?= $todo['category'] == 'other' ? 'selected' : '' ?>>Other</option>
+                        <?php if(count($categories) > 0):?>
+                        <?php foreach ($categories as $category): ?>
+                            <option value='<?=$category?>' <?= $filter == $category ? 'selected' : '' ?>><?= $category?></option>
+                        <?php endforeach; ?>
+                        <?php endif; ?>
                     </select>
                 </div>
             </div>
