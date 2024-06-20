@@ -43,7 +43,7 @@ function getCategories() {
 function saveTodos($todos, $option = 'save') {
     if($option == 'save'){
         $filename = CSV_PATH;
-    }elseif($option == 'delete'){
+    }elseif($option == 'history'){
         $filename = CSV_PATH_HISTORY;
     }else{
         $filename = CSV_PATH;
@@ -89,6 +89,19 @@ function saveUser($username) {
     $filename = CSV_PATH_USER;
     $usernames = getUsers();
     $usernames[] = $username; 
+    if (file_exists($filename)) {
+        $file = fopen($filename, 'w');
+        // écrit la première ligne ( libéllé )
+        fputcsv($file, ['users']);
+        foreach ($usernames as $username) {
+            fputcsv($file, [$username]);
+        }
+        fclose($file);
+    }
+}
+
+function saveUsers($usernames) {
+    $filename = CSV_PATH_USER;
     if (file_exists($filename)) {
         $file = fopen($filename, 'w');
         // écrit la première ligne ( libéllé )

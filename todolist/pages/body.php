@@ -11,6 +11,7 @@
             </div>
             <div class="title-container">
                 <h1 class="title">To Do List</h1>
+                <p><b>Connected as User :</b> <?= $_SESSION['username']?></p>
             </div>
             <a href="../functions/logout.php" class="button logout">Logout</a>
         </div>

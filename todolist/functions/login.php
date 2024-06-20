@@ -2,7 +2,12 @@
 session_start();
 include_once 'functions.php';
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $username = $_POST['username'];
+    $username = trim($_POST['username']);
+    if (empty($username)) {
+        $_SESSION['error'] = 'Username cannot be empty or only spaces.';
+        header('Location: ../index.php');
+        exit();
+    }
     $users = getUsers();
     if (!in_array($username, $users)) {
         saveUser($username);

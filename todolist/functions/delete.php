@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $todoDeleted = $todos[$index];
     $history[] = $todoDeleted;
     array_splice($todos, $index, 1);
-    saveTodos($history, 'delete');
+    saveTodos($history, 'history');
     saveTodos($todos);
 }
 

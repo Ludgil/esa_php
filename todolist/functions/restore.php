@@ -6,7 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $index = $_POST['index'];
     $history = getTodos('history');
     array_splice($history, $index, 1);
-    saveTodos($history, 'delete');
+    saveTodos($history, 'history');
     $task = $_POST['task'];
     $due_date = $_POST['due_date'];
     $category = $_POST['category'];
