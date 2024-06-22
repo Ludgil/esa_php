@@ -13,6 +13,7 @@ if (!isset($_SESSION['logged']) || $_SESSION['logged'] !== true) {
 }else {
     $todos = getTodos();
     $categories = getCategories();
+    $existingCategories = getExistingCategories($todos, $_SESSION['username']);
     if ($filter != "all"){
         $todos = array_filter($todos, function($todo) use ($filter) {
             return $todo["category"] === $filter;

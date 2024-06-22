@@ -113,3 +113,20 @@ function saveUsers($usernames) {
     }
 }
 
+function getExistingCategories($todos, $user){
+    $filename = CSV_PATH;
+    $categories = [];
+    if (file_exists($filename)) {
+        $file = fopen($filename, 'r');
+        fgetcsv($file);
+        while (($data = fgetcsv($file)) !== FALSE) {
+            if ($user == $data[4]){
+                $categories[] = $data[3];
+            }
+        }
+        $categs  = array_unique($categories);
+        fclose($file);
+    }
+    return $categs;
+}
+
