@@ -41,6 +41,9 @@ class PonyController extends Controller
 
     public function destroy(Pony $pony): RedirectResponse
     {
+        if ($pony->appointments()->exists()) {
+            return redirect()->back()->withErrors(['message' => 'Ce poney ne peut pas être supprimé car il a au moins un rendez-vous existant.']);
+        }
         $pony->delete();
         return redirect()->route('pony.index');
     }

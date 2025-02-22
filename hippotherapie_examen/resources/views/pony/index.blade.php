@@ -9,6 +9,15 @@
     <h1 class="mb-3">Gestion des Poneys</h1>
     <a href="{{route('pony.create')}}" class="btn btn-primary mb-3 mt-2">Ajouter un poney</a>
 </div>
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 
 <div class="card mb-4">
     <div class="card-header d-flex justify-content-between">
